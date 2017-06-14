@@ -83,6 +83,7 @@ return [
     'url_param_type'         => 0,
     // 是否开启路由
     'url_route_on'           => true,
+    'url_route_must'         =>  false,
     // 路由配置文件（支持配置多个）
     'route_config_file'      => ['route'],
     // 路由使用完整匹配

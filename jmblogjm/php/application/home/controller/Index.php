@@ -34,6 +34,11 @@ class Index extends HomeBase
 		// return $this->fetch('index',['assign'=>$assign]);
 
     }
+
+    // 文章内容
+    public function article($aid){
+       return $aid;
+    }
     public function getIndexArticleList(){
     	$data=model('Article')->getDataList();
 		return resultArray($data);

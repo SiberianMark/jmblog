@@ -127,7 +127,8 @@ class Article extends Model{
             //图片文件路径预处理
            $v['content']=preg_ueditor_image_path($v[content]);
            $list[$k]['content']=htmlspecialchars($v['content']);
-            $list[$k]['url']=url('Home/Index/article/',array('aid'=>$v['aid']));
+            // $list[$k]['url']=url('Home/Index/article',array('aid'=>$v['aid']));
+            $list[$k]['url']='index/article/'.$v['aid'];
             $list[$k][extend]=$extend;
             // $list[$k][tid]='tid';
             // $list[$k][tname]="tname";

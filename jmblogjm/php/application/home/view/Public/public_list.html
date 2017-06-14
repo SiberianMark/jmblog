@@ -11,22 +11,15 @@
         <a class="b-oa-title" href="{$v.url}" target="_blank" onclick="return recordId('{$v.extend.type}',{$v.extend.id})">{$v.title}</a></h3>
       <div class="col-xs-12 col-md-12 col-lg-12 b-date">
         <ul class="row">
-          <li class="col-xs-5 col-md-2 col-lg-3">
+          <li class="col-xs-2 col-md-2 col-lg-3">
             <i class="fa fa-user"></i>{$v.author}</li>
-          <li class="col-xs-7 col-md-3 col-lg-3">
+              <li class="col-xs-3 col-md-3 col-lg-3">
             <i class="fa fa-calendar"></i>{$v.addtime}</li>
-          <li class="col-xs-5 col-md-2 col-lg-2">
-            <i class="fa fa-list-alt"></i>
-            <a href="{:url('Home/Index/category',array('cid'=>$v.cid))}" target="_blank">{$v.category.cname}</a>
-            <li class="col-xs-7 col-md-5 col-lg-4 ">
-              <i class="fa fa-tags"></i>
-    
-            </li>
         </ul>
       </div>
       <div class="col-xs-12 col-md-12 col-lg-12">
         <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-4 hidden-xs">
+          <div class="col-sm-12 col-md-12 col-lg-12 hidden-xs">
             <figure class="b-oa-pic b-style1">
               <a href="{$v.url}" target="_blank">
                 <img src="{$v.pic_path}" alt="{$Think.config.IMAGE_TITLE_ALT_WORD}" title="{$Think.config.IMAGE_TITLE_ALT_WORD}"></a>
@@ -35,7 +28,22 @@
               </figcaption>
             </figure>
           </div>
-          <div class="col-xs-12 col-sm-6  col-md-6 col-lg-8 b-des-read">{$v.description}</div></div>
+          
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-12 article-desc">
+        <div class="col-xs-12 col-sm-6  col-md-6 col-lg-8 b-des-read">{$v.description}</div></div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <ul class="row">
+        
+          <li class="col-xs-5 col-md-2 col-lg-2">
+            <i class="fa fa-list-alt"></i>
+            <a href="{:url('Home/Index/category',array('cid'=>$v.cid))}" target="_blank">{$v.category.cname}</a>
+            <li class="col-xs-7 col-md-5 col-lg-4 ">
+              <i class="fa fa-tags"></i>
+    
+            </li>
+        </ul>
       </div>
       <a class=" b-readall" href="{$v.url}" target="_blank">阅读全文</a></div>
  {/volist}

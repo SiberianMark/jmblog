@@ -5,6 +5,7 @@ use app\home\model\Article;
 use app\home\model\Comment;
 use app\home\model\Category;
 use app\home\model\Tag;
+use think\Request;
 
 class home{
 	public function index(){
@@ -38,5 +39,9 @@ class home{
         // $categorys=model('Category')->getAllData();
         // $this->assign($assign);
         return $assign;
+    }
+    public function test(Request $request){
+        dump($request->param('index'));
+        return 'test';
     }
 }

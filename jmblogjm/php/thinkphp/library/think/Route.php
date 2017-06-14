@@ -679,7 +679,7 @@ class Route
      */
     public static function miss($route, $method = '*', $option = [])
     {
-        self::rule('__miss__', $route, $method, $option, []);
+        // self::rule('__miss__', $route, $method, $option, []);
     }
 
     /**

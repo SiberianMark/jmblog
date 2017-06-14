@@ -1,0 +1,11 @@
+body {
+    width: 100%;
+    font-family: "Helvetica Neue", "Microsoft YaHei", 微软雅黑, STHeiti, "WenQuanYi Micro Hei", SimSun, Arial, Helvetica, sans-serif;
+    color: rgb(51, 51, 51);
+    font-size: 12px;
+    position: relative;
+    margin: 0px;
+    background: rgb(242, 242, 242);
+    overflow-x:hidden; 
+}
+.navbar{margin-bottom: 0px!important;border-radius: 0px;}
