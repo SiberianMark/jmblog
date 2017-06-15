@@ -128,7 +128,7 @@ class Article extends Model{
            $v['content']=preg_ueditor_image_path($v[content]);
            $list[$k]['content']=htmlspecialchars($v['content']);
             // $list[$k]['url']=url('Home/Index/article',array('aid'=>$v['aid']));
-            $list[$k]['url']='index/article/'.$v['aid'];
+            $list[$k]['url']='article/'.$v['aid'];
             $list[$k][extend]=$extend;
             // $list[$k][tid]='tid';
             // $list[$k][tname]="tname";
@@ -145,4 +145,71 @@ class Article extends Model{
         return $data;
 		
 	}
+
+    public function getDataByAid($aid,$map=''){
+        if($map==''){
+            //$map为空不获取上下篇文章
+            $data=$this->where(array('aid'=>$aid))->find();
+
+             //获取文章标签id
+             $data['tids']=model('ArticleTag')->getDataByAid($aid);
+             //获取文章tags
+             $data['tag']=model('ArticleTag')->getDataByAid($aid,'all');
+             //获取文章类别
+             $data['category']=current(model('Category')->getDataByCid($data['cid'],'cid,cid,cname,keywords'));
+            //获取相对路径的图片地址
+             $data['content']=preg_ueditor_image_path($data['content']);
+        }else{
+            if(isset($map['tid'])){
+                //根据cookie标签获取上下篇文章
+                $prev_map['at.tid']=$map['tid']?$map['tid']:20;
+                $prev_map['a.is_show']=1;
+                $prev_map['a.is_delete']=0;
+                $next_map=$prev_map;
+                $prev_map['a.aid']=['<',$aid];
+                $next_map['a.aid']=['>',$aid];
+                $data['prev']=$this->field('a.aid,a.title')->alias('a')->join('__ARTICLE_TAG__ at','a.aid=at.aid')->where($prev_map)->order('a.aid desc')->limit(1)->find();
+                $data['next']=$this->field('a.aid,a.title')->alias('a')->join('__ARTICLE_TAG__ at','a.aid=at.aid')->where($next_map)->order('a.aid desc')->limit(1)->find();
+            }else if(isset($map['cid'])){
+                 // 根据此分类cid获取上下篇文章
+                 $prev_map['cid']=$map['cid']?$map['cid']:28;
+                 $prev_map['is_show']=1;
+                 $prev_map['is_delete']=0;
+                 $next_map=$prev_map;
+                 $prev_map['aid']=['<',$aid];
+                 $next_map['aid']=['>',$aid];
+                 $data['prev']=$this->field('aid,title')->where($prev_map)->limit(1)->find();
+                 $data['next']=$this->field('aid,title')->where($next_map)->order('aid desc')->limit(1)->find();
+
+            }else{
+                //根据搜索词获取上下篇文章
+                $map['title']=$map['title']?$map['title']:'测试';
+                $prev_map['title']=['like','%'.$map['title'].'%'];
+                $prev_map['is_show']=1;
+                $prev_map['is_delete']=0;
+                $next_map=$prev_map;
+                $prev_map['aid']=['<',$aid];
+                $next_map['aid']=['>',$aid];
+                $data['prev']=$this->field('aid,title')->where($prev_map)->limit(1)->find();
+                $data['next']=$this->field('aid,title')->where($next_map)->order('aid desc')->limit(1)->find();
+            }
+            // 如果不为空 添加url
+            if(!empty($data['prev'])){
+                $data['prev']['url']='article/'.$data['prev']['aid'];
+            }
+            if(!empty($data['next'])){
+                $data['next']['url']='article/'.$data['next']['aid'];;
+            }
+            $data['current']=$this->where(array('aid'=>$aid))->find();
+            //获取文章标签id
+             $data['current']['tids']=model('ArticleTag')->getDataByAid($aid);
+             //获取文章tags
+             $data['current']['tag']=model('ArticleTag')->getDataByAid($aid,'all');
+             //获取文章类别
+             $data['current']['category']=current(model('Category')->getDataByCid($data['cid'],'cid,cid,cname,keywords'));
+            //获取相对路径的图片地址
+             $data['current']['content']=preg_ueditor_image_path($data['current']['content']);  
+        }
+        return $data;
+    }
 }

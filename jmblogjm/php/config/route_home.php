@@ -6,10 +6,9 @@
 // +----------------------------------------------------------------------
 return [
 	//test index路由
-	'home/'=> 'home/home/test',
-	'home/index'=>'home/index/index',
+	'home/'=> 'home/index/index',
 	'home/getIndexArticles'=>'home/index/getIndexArticleList',
 	'/home/test'=>'home/home/getAlldata',
-	'home/index/article/:aid'=>'home/index/article',
+	'article/:aid'=>'home/index/article',
 	
 ];

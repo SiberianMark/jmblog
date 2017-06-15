@@ -1,10 +1,8 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:7:{s:61:"E:\github\VueThink\php/application/home\view\index\index.html";i:1497497335;s:68:"E:\github\VueThink\php/application/home\view\Public\public_head.html";i:1497496791;s:67:"E:\github\VueThink\php/application/home\view\Public\public_nav.html";i:1497506087;s:70:"E:\github\VueThink\php/application/home\view\Public\public_slider.html";i:1497424244;s:68:"E:\github\VueThink\php/application/home\view\Public\public_list.html";i:1497430211;s:69:"E:\github\VueThink\php/application/home\view\Public\public_right.html";i:1497342283;s:68:"E:\github\VueThink\php/application/home\view\Public\public_foot.html";i:1497425282;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:63:"E:\github\VueThink\php/application/home\view\index\article.html";i:1497506177;s:68:"E:\github\VueThink\php/application/home\view\public\public_head.html";i:1497496791;s:67:"E:\github\VueThink\php/application/home\view\Public\public_nav.html";i:1497506087;s:69:"E:\github\VueThink\php/application/home\view\Public\public_right.html";i:1497342283;s:68:"E:\github\VueThink\php/application/home\view\Public\public_foot.html";i:1497425282;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<link rel="stylesheet" href="/public/static/css/jmslider.css">
-		<link rel="stylesheet" type="text/css" href="/public/static/home/css/index.css">
-		<meta charset="UTF-8"><title>JM</title>
+ <head>
+   <meta charset="UTF-8"><title>JM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="/public/static/bootstrap-3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/public/static/bootstrap-3.3.5/css/bootstrap-theme.min.css">
@@ -62,10 +60,12 @@ $(document).ready(function(){
     });
 });
 </script>
-	</head>
-	<body>
-	<div class="html-box">
-		<nav class="navbar navbar-inverse " role="navigation">
+ </head>
+ <body>
+   <div class="html-box">
+  <link href="/public/static/ueditor1_4_3/third-party/SyntaxHighlighter/shCoreDefault.css" />
+  <link rel="canonical" href="{:'/article'.$_GET['aid']" />
+  <nav class="navbar navbar-inverse " role="navigation">
 	<div class="container-fluid navbar-left ">
 		<div class="navbar-header">
 			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
@@ -103,74 +103,50 @@ $(document).ready(function(){
 	</nav>
 	
 </nav>
-		<div class="slider" id="slider">
-  <div class="slider-inner">
-    <div class="item">
-      <img class="img" src="/public/static/upload/slide_1.jpg">
-    </div>
-    <div class="item">
-      <img class="img" src="/public/static/upload/slide_2.jpg">
-    </div>
-    <div class="item">
-      <img class="img" src="/public/static/upload/slide_3.jpg">
-    </div>
-  </div>
-</div>
-		<div class="b-h-70"></div>
-		<div id="b-content" class="container">
-			<div class="row">
-				<div class="col-xs-12 col-md-12 col-lg-8">
-  <div class="note-empty" name="title_word">
-    <div class="row b-tag-title">
-      <div class="col-xs-12 col-md-12 col-lg-12">
-        <h2><?php echo $title_word; ?></h2></div>
-    </div>
-  </div>
-  <?php if(is_array($articles) || $articles instanceof \think\Collection || $articles instanceof \think\Paginator): $i = 0; $__LIST__ = $articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
-    <div class="row b-one-article">
-      <h3 class="col-xs-12 col-md-12 col-lg-12">
-        <a class="b-oa-title" href="<?php echo $v['url']; ?>" target="_blank" onclick="return recordId('<?php echo $v['extend']['type']; ?>',<?php echo $v['extend']['id']; ?>)"><?php echo $v['title']; ?></a></h3>
-      <div class="col-xs-12 col-md-12 col-lg-12 b-date">
-        <ul class="row">
-          <li class="col-xs-2 col-md-2 col-lg-3">
-            <i class="fa fa-user"></i><?php echo $v['author']; ?></li>
-              <li class="col-xs-3 col-md-3 col-lg-3">
-            <i class="fa fa-calendar"></i><?php echo $v['addtime']; ?></li>
-        </ul>
-      </div>
-      <div class="col-xs-12 col-md-12 col-lg-12">
-        <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-12 hidden-xs">
-            <figure class="b-oa-pic b-style1">
-              <a href="<?php echo $v['url']; ?>" target="_blank">
-                <img src="<?php echo $v['pic_path']; ?>" alt="<?php echo \think\Config::get('IMAGE_TITLE_ALT_WORD'); ?>" title="<?php echo \think\Config::get('IMAGE_TITLE_ALT_WORD'); ?>"></a>
-              <figcaption>
-                <a href="<?php echo $v['url']; ?>" target="_blank"></a>
-              </figcaption>
-            </figure>
-          </div>
-          
-      </div>
-      <div class="col-sm-12 col-md-12 col-lg-12 article-desc">
-        <div class="col-xs-12 col-sm-6  col-md-6 col-lg-8 b-des-read"><?php echo $v['description']; ?></div></div>
-      </div>
-      <div class="col-sm-12 col-md-12 col-lg-12">
-        <ul class="row">
-        
-          <li class="col-xs-5 col-md-2 col-lg-2">
-            <i class="fa fa-list-alt"></i>
-            <a href="<?php echo url('Home/Index/category',array('cid'=>$v['cid'])); ?>" target="_blank"><?php echo $v['category']['cname']; ?></a>
-            <li class="col-xs-7 col-md-5 col-lg-4 ">
-              <i class="fa fa-tags"></i>
-    
-            </li>
-        </ul>
-      </div>
-      <a class=" b-readall" href="<?php echo $v['url']; ?>" target="_blank">阅读全文</a></div>
- <?php endforeach; endif; else: echo "" ;endif; ?>
 
-</div>
-				<div id="b-public-right" class="col-lg-4 hidden-xs hidden-sm hidden-md">
+ <div class="b-h-70"></div>
+  <div id="b-content" class="container">
+   <div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-8">
+     <div class="row b-article">
+      <h1 class="col-xs-12 col-md-12 col-lg-12 b-title"><?php echo $article['current']['title']; ?></h1>
+      <div class="col-xs-12 col-md-12 col-lg-12">
+       <ul class="row b-metadata">
+        <li class="col-xs-3 col-md-2 col-lg-2"><i class="fa fa-user"></i> <?php echo $article['current']['author']; ?></li>
+        <li class="col-xs-8 col-md-4 col-lg-4"><i class="fa fa-calendar"></i> <?php echo date('Y-m-d H:i:s',$article['current']['addtime']); ?></li>
+        <li class="col-xs-3 col-md-2 col-lg-2"><i class="fa fa-list-alt"></i> <a href="<?php echo $article['current']['category']['cid']; ?>"><?php echo $article['current']['category']['cname']; ?></a>
+         <?php if(!empty($article['current']['tag'])): endif; ?></li>
+        <li class="col-xs-7 col-md-5 col-lg-4 "><i class="fa fa-tags"></i>
+         <?php if(is_array($article['current']['tag']) || $article['current']['tag'] instanceof \think\Collection || $article['current']['tag'] instanceof \think\Paginator): $i = 0; $__LIST__ = $article['current']['tag'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
+          <a class="b-tag-name" href="{:'tag'.$v['tid']}"><?php echo $v['tname']; ?></a>
+         <?php endforeach; endif; else: echo "" ;endif; ?></li>
+       </ul>
+      </div>
+      <div class="col-xs-12 col-md-12 col-lg-12 b-content-word">
+        <?php echo $article['current']['content']; ?> 
+       <eq name="article['current']['is_original']" value="1">
+        <p class="b-h-20"></p>
+        <p class="b-copyright"> <?php echo \think\Config::get('COPYRIGHT_WORD'); ?></p>
+       </eq>
+       <ul class="b-prev-next">
+        <li class="b-prev"> 上一篇：
+         <empty name="article['prev']"> 
+          <span>没有了</span>
+          <else /> 
+          <a href="<?php echo $article['prev']['url']; ?>"><?php echo $article['prev']['title']; ?></a>
+         </empty></li>
+        <li class="b-next"> 下一篇：
+         <empty name="article['next']"> 
+          <span>没有了</span>
+          <else /> 
+          <a href="<?php echo $article['next']['url']; ?>"><?php echo $article['next']['title']; ?></a>
+         </empty></li>
+       </ul>
+      </div>
+     </div>
+     <!-- <include file="Public/public_comment" /> -->
+    </div>
+    <div id="b-public-right" class="col-lg-4 hidden-xs hidden-sm hidden-md">
   <div class="b-tags">
     <h4 class="b-title">热门标签</h4>
     <ul class="b-all-tname">
@@ -220,17 +196,9 @@ $(document).ready(function(){
       <input class="b-search-submit" type="submit" value="全站搜索"></form>
   </div>
 </div>
-			</div>
-			
-		</div>
-		<div class="row"><footer id="b-foot" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><ul><li class="text-center"> <a rel="nofollow" href="http://git.oschina.net/shuaibai123/thinkbjy" target="_blank"></a> © 2014-2016 www.mashaobin.com 版权所有</li><li class="text-center"> 联系邮箱：<?php echo \think\Config::get('ADMIN_EMAIL'); ?></li></ul><div class="b-h-20"></div><a class="go-top fa fa-angle-up animated jello" href="javascript:;" onclick="goTop()"></a></footer></div>
-		<!-- <include file="Public/public_login"/> -->
-	</div>
-	</body>
-	<script src="/public/static/js/jm-slider.js"></script>
-	<script>
-		jQuery(document).ready(function($) {
-		  $('#slider').Slider();
-		});
-	</script>
+   </div>
+  </div>
+   <footer id="b-foot" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><ul><li class="text-center"> <a rel="nofollow" href="http://git.oschina.net/shuaibai123/thinkbjy" target="_blank"></a> © 2014-2016 www.mashaobin.com 版权所有</li><li class="text-center"> 联系邮箱：<?php echo \think\Config::get('ADMIN_EMAIL'); ?></li></ul><div class="b-h-20"></div><a class="go-top fa fa-angle-up animated jello" href="javascript:;" onclick="goTop()"></a></footer>
+</div>
+ </body>
 </html>

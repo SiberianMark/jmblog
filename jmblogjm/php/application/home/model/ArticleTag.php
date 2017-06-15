@@ -5,7 +5,7 @@ use Think\model;
 use Think\Db;
 
 class ArticleTag extends model{
-    public function getDataByAid($aid,$field='true'){
+    public function getDataByAid($aid,$field='all'){
     	if($field=='all'){
     		return model('ArticleTag')
     		->alias('at')
