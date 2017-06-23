@@ -54,7 +54,7 @@ var webpackConfig = merge(baseWebpackConfig, {//合并共用配置
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
-    // split vendor js into its own file
+    // split vendor js into its own file//打包所有第三方引入的插件模块
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {
@@ -70,7 +70,7 @@ var webpackConfig = merge(baseWebpackConfig, {//合并共用配置
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
-    new webpack.optimize.CommonsChunkPlugin({
+    new webpack.optimize.CommonsChunkPlugin({//在vender的基础上再抽出经常变动的代码进行打包，一般是异步加载的js等等
       name: 'manifest',
       chunks: ['vendor']
     })

@@ -1,9 +1,5 @@
-//启动服务器之前先执行验证版本号是否满足
 require('./check-versions')()
-
-//加载整个项目相关配置
 var config = require('../config')
-
 
 if (!process.env.NODE_ENV) process.env.NODE_ENV = config.dev.env
 var path = require('path')

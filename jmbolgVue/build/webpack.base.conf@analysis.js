@@ -7,9 +7,9 @@ var env = process.env.NODE_ENV//利用process模块与当前进程通信获取�
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file
 //根据环境判断是否使用cssSourceMap(less编译时对css的映射，便于调试),如果是开发环境则使用并加载css loader
-var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
+var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)//是否生成打包css索引，记录你压缩的翻译文件，通过这个文件可以找到你的对应的源码，便于打包后调试
 var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
-var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
+var useCssSourceMap = cssSourceMapDev || cssSourceMapProd//生产环境不生成，开发环境生成
 
 // define the different HOST between development and production environment
 //设置后台开发服务器地址
@@ -18,12 +18,12 @@ var PUB_HOST = JSON.stringify('http://www.vuethink.jm:80/')
 
 module.exports = {
   entry: {
-    app: './src/main.js'//一个入口文件
+    app: './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
-    filename: '[name].js'//CommonsChunkPlugin提取公用代码导致生成多个文件，mian,app,manifest,vendor
+    filename: '[name].js'
   },
   eslint: {
     configFile: './.eslintrc.json'
@@ -34,9 +34,9 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['', '.js', '.vue'],
-    fallback: [path.join(__dirname, '../node_modules')],//添加项目中的node_modules目录到解析路径中。有两个配置选项可以设置：resolve.fallback和 resolveLoader.fallback。
-    alias: {
+    extensions: ['', '.js', '.vue'],//配置后缀名
+    fallback: [path.join(__dirname, '../node_modules')],
+    alias: {//配置路径别名
       'vue$': 'vue/dist/vue',
       'src': path.resolve(__dirname, '../src'),//解析为绝对路径输出/E:/github/VueThink/frontEnd/src;部署时输出[网站根目录]/VueThink/frontEnd/src
       'assets': path.resolve(__dirname, '../src/assets'),//解析为绝对路径
@@ -44,9 +44,9 @@ module.exports = {
     }
   },
   resolveLoader: {
-    fallback: [path.join(__dirname, '../node_modules')]//__dirname获取当前模块所在的完整绝对路径//添加项目中的node_modules目录到解析路径中。有两个配置选项可以设置：resolve.fallback和 resolveLoader.fallback。
+    fallback: [path.join(__dirname, '../node_modules')]//__dirname获取当前模块所在的完整绝对路径
   },
-  module: {
+  module: {//配置打包时需自动引用的加载器
     preLoaders: [
       {
         test: /\.js$/,
